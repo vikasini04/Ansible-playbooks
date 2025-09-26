@@ -1,0 +1,25 @@
+---
+- hosts: webservers
+  user: ansible
+  become: true
+  connection: ssh 
+  tasks:
+  
+    - name: Install java on host machines
+      action: yum pkg=java state=present
+
+    - name: Install mariadb105 on host machines
+      action: yum pkg=mariadb105 state=present
+      
+    - name: Install httpd on host machines
+      action: yum pkg=httpd state=present
+
+    - name: Start httpd server on host machines 
+      action: service name=httpd state=started
+    
+    - name: Stop httpd server on host machines 
+      action: service name=httpd state=stopped
+
+    - name: Restart httpd server on host machines 
+      action: service name=httpd state=restarted 
+
